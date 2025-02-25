@@ -11,7 +11,6 @@ import {
 const router = Router();
 
 
-router.route("/register").post(registerCustomer);
 router.route("/login").post(loginCustomer);
 router.route("/updatecustomerdetails").put(updateCustomerDetails);
 router.route("/createorder").post(createOrder);
