@@ -13,7 +13,6 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
-router.route("/registeruser").post(registerPartner);
 router.route("/addrestaurant").post(addRestaurant);
 router.route("/loginuser").post(loginPartner);
 router.route("/deleteaccount").delete(deleteAccount);
