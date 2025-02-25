@@ -9,7 +9,6 @@ import {
 } from "../controller/customer.controller.js";
 
 const router = Router();
-router.route("/registeruser").post(registerPartner);
 
 
 router.route("/register").post(registerCustomer);
