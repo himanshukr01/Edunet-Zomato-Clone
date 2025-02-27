@@ -16,7 +16,7 @@ const sendEmail = async (req, res) => {
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: "sonu.mondal.2027@gmail.com",
+      user: "himanshukr1505892@gmail.com",
       pass: "scwn zrvt owih onbw",
     },
   });
@@ -24,23 +24,23 @@ const sendEmail = async (req, res) => {
   console.log("transporter: ", transporter);
 
   // Setup email data
-  let mailOptions = {
-    from: "sonu.mondal.2027@gmail.com",
-    to: email,
-    subject: "Email Verification Code",
-    text: `Your verification code is: ${otp}`,
-  };
+  // let mailOptions = {
+  //   from: "sonu.mondal.2027@gmail.com",
+  //   to: email,
+  //   subject: "Email Verification Code",
+  //   text: `Your verification code is: ${otp}`,
+  // };
 
-  console.log("mailOptions: ", mailOptions);
+  // console.log("mailOptions: ", mailOptions);
 
-  try {
-    // Send mail with defined transport object
-    await transporter.sendMail(mailOptions);
-    res.status(201).json({ emailstatus: "Email sent successfully!" });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ emailstatus: "Error sending email!" });
-  }
+//   try {
+//     // Send mail with defined transport object
+//     await transporter.sendMail(mailOptions);
+//     res.status(201).json({ emailstatus: "Email sent successfully!" });
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//     res.status(500).json({ emailstatus: "Error sending email!" });
+//   }
 };
 
 const registerPartner = async (req, res) => {

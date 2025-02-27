@@ -42,6 +42,8 @@ const Signup = () => {
         }
     }
 
+    
+
     const handleChange = (e, index) => {
 
         if (inputOtp[index].length < 1) {
@@ -110,35 +112,36 @@ const Signup = () => {
         <div className='Signup-parent'>
             {
                 verifyOtp ?
-                    <div className='verifyOtp'>
-                        <div className='heading'>Verify Your email</div>
-                        <div className='para'>
-                            <div className='div1'>Enter the 8 digit code you have received on</div>
-                            <div className='div2'>{useremail.slice(0, 3)}***{useremail.slice(useremail.length - 10, useremail.length)}</div>
-                        </div>
+                    // <div className='verifyOtp'>
+                    //     <div className='heading'>Verify Your email</div>
+                    //     <div className='para'>
+                    //         <div className='div1'>Enter the 8 digit code you have received on</div>
+                    //         <div className='div2'>{useremail.slice(0, 3)}***{useremail.slice(useremail.length - 10, useremail.length)}</div>
+                    //     </div>
 
-                        <form className='form' onSubmit={handleVerifyEmail}>
-                            <label htmlFor="">Code</label>
-                            <div className="form-child">
-                                {Array.from({ length: 6 }).map((_, i) => (
-                                    <input
-                                        onFocus={(e) => handleFocus(e, i)}
-                                        key={i}
-                                        ref={i === currentFocus + 1 ? inputRef : null}
-                                        onChange={(e) => handleChange(e, i)}
-                                        onKeyDown={(e) => handleKeyDown(e, i)}
-                                        className='input'
-                                        type="number"
-                                        maxLength={1}
-                                        value={inputOtp[i]}
-                                    />
+                    //     <form className='form' onSubmit={handleVerifyEmail}>
+                    //         <label htmlFor="">Code</label>
+                    //         <div className="form-child">
+                    //             {Array.from({ length: 6 }).map((_, i) => (
+                    //                 <input
+                    //                     onFocus={(e) => handleFocus(e, i)}
+                    //                     key={i}
+                    //                     ref={i === currentFocus + 1 ? inputRef : null}
+                    //                     onChange={(e) => handleChange(e, i)}
+                    //                     onKeyDown={(e) => handleKeyDown(e, i)}
+                    //                     className='input'
+                    //                     type="number"
+                    //                     maxLength={1}
+                    //                     value={inputOtp[i]}
+                    //                 />
 
-                                ))}
-                            </div>
-                            <button className='verify-button ' type="submit">Verify</button>
-                        </form>
+                    //             ))}
+                    //         </div>
+                    //         <button className='verify-button ' type="submit">Verify</button>
+                    //     </form>
 
-                    </div>
+                    // </div>
+                    null
                     :
                     <div className='Signup'>
                         <div className='heading'>Create your account</div>
