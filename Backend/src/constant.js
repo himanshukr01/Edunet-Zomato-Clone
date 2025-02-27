@@ -1,1 +1,1 @@
-export const DB_NAME = "zomato-clone"
+export const DB_NAME = "MERN"
