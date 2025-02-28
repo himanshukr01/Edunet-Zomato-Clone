@@ -16,8 +16,8 @@ const Signup = () => {
 
     const [firstName, setFirstname] = useState('');
     const [lastName, setLastname] = useState('');
-    const [useremail, setUseremail] = useState('');
-    const [userpassword, setUserpassword] = useState('')
+    // const [useremail, setUseremail] = useState('');
+    // const [userpassword, setUserpassword] = useState('')
     const [verifyOtp, setVerifyOtp] = useState(false)
     const [inputOtp, setInputOtp] = useState(Array.from({ length: 6 }, () => ""));
     const [otp, setOtp] = useState("")
@@ -27,23 +27,30 @@ const Signup = () => {
     let inputRef = useRef(null)
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        if (useremail.includes("@gmail.com") && firstName.length > 1 && lastName.length > 1 && userpassword.length > 7) {
-            sendEmailOtp(useremail)
-                .then((res) => {
-                    console.log("res is: ", res);
-                    setVerifyOtp(true)
-                    setOtp(res)
-                })
-                .catch(() => {
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     if (useremail.includes("@gmail.com") && firstName.length > 1 && lastName.length > 1 && userpassword.length > 7) {
+    //         sendEmailOtp(useremail)
+    //             .then((res) => {
+    //                 console.log("res is: ", res);
+    //                 setVerifyOtp(true)
+    //                 setOtp(res)
+    //             })
+    //             .catch(() => {
 
-                })
-        }
-    }
+    //             })
+    //     }
+    // }
 
+   
+    const handleSubmit = (e) => {
+        e.preventDefault();
     
-
+        
+        console.log('Email is', useremail);
+        console.log('Password is', userpassword); 
+    };
+    
     const handleChange = (e, index) => {
 
         if (inputOtp[index].length < 1) {
