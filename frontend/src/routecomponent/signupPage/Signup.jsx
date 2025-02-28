@@ -2,7 +2,7 @@ import React from 'react'
 import "./Signup.css"
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { sendEmailOtp } from '../../databaseCall/sendEmailOtp.js';
+import { sendEmailOtp } from '../../databaseCall/sendEmailOtp.js';
 import { useRef } from 'react';
 import { customerRegistration } from '../../databaseCall/registerCustomer.js';
 import { useNavigate } from 'react-router-dom';
@@ -18,106 +18,97 @@ const Signup = () => {
     const [lastName, setLastname] = useState('');
     const [useremail, setUseremail] = useState('');
     const [userpassword, setUserpassword] = useState('')
-    // const [verifyOtp, setVerifyOtp] = useState(false)
-    // const [inputOtp, setInputOtp] = useState(Array.from({ length: 6 }, () => ""));
-    // const [otp, setOtp] = useState("")
-    // const [currentFocus, setCurrentFocus] = useState(0)
+    const [verifyOtp, setVerifyOtp] = useState(false)
+    const [inputOtp, setInputOtp] = useState(Array.from({ length: 6 }, () => ""));
+    const [otp, setOtp] = useState("")
+    const [currentFocus, setCurrentFocus] = useState(0)
 
     const [signupSuccess, setSignupSuccess] = useState(false)
-    // let inputRef = useRef(null)
+    let inputRef = useRef(null)
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     if (useremail.includes("@gmail.com") && firstName.length > 1 && lastName.length > 1 && userpassword.length > 7) {
-    //         sendEmailOtp(useremail)
-    //             .then((res) => {
-    //                 console.log("res is: ", res);
-    //                 setVerifyOtp(true)
-    //                 setOtp(res)
-    //             })
-    //             .catch(() => {
 
-    //             })
-    //     }
-    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (useremail.includes("@gmail.com") && firstName.length > 1 && lastName.length > 1 && userpassword.length > 7) {
+            sendEmailOtp(useremail)
+                .then((res) => {
+                    console.log("res is: ", res);
+                    setVerifyOtp(true)
+                    setOtp(res)
+                })
+                .catch(() => {
 
-   
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        console.log('Email is', useremail);
-        console.log('Password is', userpassword); 
+                })
+        }
+    }
 
-        setUseremail('')
-        setUserpassword('')
+    const handleChange = (e, index) => {
 
-        navigate('/login')
-    };
-    
-    // const handleChange = (e, index) => {
-    //     if (inputOtp[index].length < 1) {
-    //         const value = e.target.value;
-    //         console.log("val is: ", value);
-    //         setInputOtp(prevState => {
-    //             const newState = [...prevState];
-    //             newState[index] = value;
-    //             return newState;
-    //         });
-    //         if (index < 5) {
-    //             setCurrentFocus(index + 1)
-    //             inputRef.current.focus()
-    //         }
-    //     }
-    // }
+        if (inputOtp[index].length < 1) {
+            const value = e.target.value;
+            console.log("val is: ", value);
+            setInputOtp(prevState => {
+                const newState = [...prevState];
+                newState[index] = value;
+                return newState;
+            });
+            if (index < 5) {
+                setCurrentFocus(index + 1)
+                inputRef.current.focus()
+            }
+        }
+    }
 
-    // const handleFocus = (e, index) => {
-    //     console.log("e", e);
-    //     e.target.focus()
-    //     setCurrentFocus(index)
-    // }
+    const handleFocus = (e, index) => {
+        console.log("e", e);
+        e.target.focus()
+        setCurrentFocus(index)
+    }
 
-    // const handleKeyDown = (e, index) => {
-    //     console.log("e on key down: ", e);
-    //     if (e.key === 'Backspace') {
-    //         setInputOtp(prevState => {
-    //             const newState = [...prevState];
-    //             newState[index] = "";
-    //             return newState;
-    //         });
-    //     }
-    //     console.log(e);
-    // }
+    const handleKeyDown = (e, index) => {
+        console.log("e on key down: ", e);
+        if (e.key === 'Backspace') {
+            setInputOtp(prevState => {
+                const newState = [...prevState];
+                newState[index] = "";
+                return newState;
+            });
+        }
+        console.log(e);
 
-    // const handleVerifyEmail = async (e) => {
-    //     e.preventDefault()
+    }
 
-    //     if (inputOtp.some(digit => digit === '')) {
-    //         return;
-    //     }
+    const handleVerifyEmail = async (e) => {
+        e.preventDefault()
 
-    //     let inputOtpStr = ""
-    //     inputOtp.forEach((e) => {
-    //         inputOtpStr += e
-    //     })
+        if (inputOtp.some(digit => digit === '')) {
+            return;
+        }
 
-    //     if (inputOtpStr === String(otp)) {
-    //         customerRegistration(firstName, lastName, useremail, userpassword)
-    //             .then((res) => {
-    //                 console.log('RES rec is: ', res);
-    //                 dispatch(setCustomerDetail(res))
-    //                 navigate("/")
-    //             })
-    //             .catch(() => {
+        let inputOtpStr = ""
+        inputOtp.forEach((e) => {
+            inputOtpStr += e
+        })
 
-    //             })
-    //     }
-    // }
+        if (inputOtpStr === String(otp)) {
+            customerRegistration(firstName, lastName, useremail, userpassword)
+                .then((res) => {
+                    console.log('RES rec is: ', res);
+                    dispatch(setCustomerDetail(res))
+                    navigate("/")
+                })
+                .catch(() => {
 
-    // console.log("inp otp : ", inputOtp);
+                })
+        }
+    }
+
+
+    console.log("inp otp : ", inputOtp);
 
     return (
         <div className='Signup-parent'>
-            {/* {
+            {
                 verifyOtp ?
                     <div className='verifyOtp'>
                         <div className='heading'>Verify Your email</div>
@@ -148,7 +139,7 @@ const Signup = () => {
                         </form>
 
                     </div>
-                    : */}
+                    :
                     <div className='Signup'>
                         <div className='heading'>Create your account</div>
 
@@ -185,7 +176,7 @@ const Signup = () => {
                             </Link>
                         </div>
                     </div>
-            {/* } */}
+            }
         </div>
     )
 }

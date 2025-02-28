@@ -10,7 +10,7 @@ connectDB().then(() => {
   app.get("/", (req, res) => {
     res
       .status(200)
-      .json({ names: "sonu mondal", email: "sonu.mondal.2027@gmail.com" });
+      .json({ names: "Munna Kumar", email: "munnak0995@gmail.com" });
   });
 
   app.get("/project", (req, res) => {
