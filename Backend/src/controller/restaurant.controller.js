@@ -29,9 +29,7 @@ const registerRestaurant = async (req, res) => {
   console.log("typeof restaurant_hour: ", typeof restaurant_hour);
 
   try {
-    // const image1 = await uploadOnCloudinary(restaurant_menu[0].path);
-    // const image2 = await uploadOnCloudinary(restaurant_image[0].path);
-    // const image3 = await uploadOnCloudinary(restaurant_food_image[0].path);
+   
 
     const image1 = await uploadOnCloudinary(
       restaurant_menu[0].buffer,

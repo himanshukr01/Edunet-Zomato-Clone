@@ -12,7 +12,6 @@ const sendEmail = async (req, res) => {
 
   const { email, otp } = req.body;
 
-  // Create a transporter object using SMTP transport
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -23,7 +22,6 @@ const sendEmail = async (req, res) => {
 
   console.log("transporter: ", transporter);
 
-  // Setup email 
   let mailOptions = { 
     from: "munnak0995@gmail.com",
    to: email,
