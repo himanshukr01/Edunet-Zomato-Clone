@@ -139,8 +139,8 @@ const deletePartnerRestaurant = async (req, res) => {
   const response2 = await Partner.updateOne(
     { _id: response[0]._id },
     {
-      // It will also work
-      // $set: { restaurantId: newRestaurantId },
+      
+      $set
       restaurantId: newRestaurantId,
     }
   );
@@ -162,7 +162,6 @@ const updateRestaurant = async (req, res) => {
 
   try {
     if (restaurant_menu) {
-      // image1 = await uploadOnCloudinary(restaurant_menu[0].path);
       image1 = await uploadOnCloudinary(
         restaurant_menu[0].buffer,
         `${Date.now()}_${restaurant_menu[0].originalname}`
